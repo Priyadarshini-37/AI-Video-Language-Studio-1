@@ -1,15 +1,20 @@
-import whisper
-import text_to_speech
+from gtts import gTTS
 
-def speech_to_text(audio_file):
+
+def text_to_speech(
+    text,
+    language="en",
+    output_file="generated_voice.mp3"
+):
     """
-    Convert audio into text using Whisper AI.
+    Convert translated text into speech.
     """
 
-    model = whisper.load_model("base")
-
-    result = model.transcribe(
-        audio_file
+    speech = gTTS(
+        text=text,
+        lang=language
     )
 
-    return result["text"]
+    speech.save(output_file)
+
+    return output_file
