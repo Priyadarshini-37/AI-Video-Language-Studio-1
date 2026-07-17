@@ -1,22 +1,15 @@
-import speech_recognition as sr
+import whisper
 
 
 def speech_to_text(audio_file):
     """
-    Convert audio into text.
+    Convert audio into text using Whisper AI.
     """
 
-    recognizer = sr.Recognizer()
+    model = whisper.load_model("tiny")
 
-    with sr.AudioFile(audio_file) as source:
-        audio = recognizer.record(source)
+    result = model.transcribe(
+        audio_file
+    )
 
-    try:
-        text = recognizer.recognize_google(audio)
-        return text
-
-    except sr.UnknownValueError:
-        return "Could not understand the audio."
-
-    except sr.RequestError:
-        return "Speech recognition service is unavailable."
+    return result["text"]
