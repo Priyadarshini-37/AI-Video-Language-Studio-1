@@ -7,3 +7,4 @@ gTTS
 pysrt
 ffmpeg-python
 imageio-ffmpeg
+openai-whisper
