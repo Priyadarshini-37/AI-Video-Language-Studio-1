@@ -1,4 +1,4 @@
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 
 def translate_text(text, target_language):
@@ -6,11 +6,9 @@ def translate_text(text, target_language):
     Translate text into the selected language.
     """
 
-    translator = Translator()
+    translated = GoogleTranslator(
+        source="auto",
+        target=target_language
+    ).translate(text)
 
-    result = translator.translate(
-        text,
-        dest=target_language
-    )
-
-    return result.text
+    return translated
